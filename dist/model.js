@@ -2,19 +2,22 @@ class weatherManager {
   constructor() {
     this.cityData = [];
   }
-  getDataFromDB = () => {
-    $.get(`/cities`, function(response) {});
-  };
+  async getDataFromDB(cityData) {
+    let cities = await $.get(`/cities`);
+    cities.forEach(c => {
+      this.cityData.push(c);
+    });
+  }
 
   async getCityData(cityData) {
     let input = $(`#input`)
       .val()
       .toLowerCase();
-      this.cityData.push(await $.get(`/city/${input}`))
-  };
+    this.cityData.push(await $.get(`/city/${input}`));
+  }
 
-  saveCity = () => {
-    $.post(`/city`);
+  async saveCity () {
+    await $.post(`/city`);
   };
 
   removeCity = cityName => {
