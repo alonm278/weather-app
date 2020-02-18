@@ -15,7 +15,7 @@ router.get(`/city/:cityName`, async function(req, res) {
   let data = await getWeather(url);
   data = {
     name: data.name,
-    temperature: data.main.temp,
+    temperature: Math.round(data.main.temp),
     condition: data.weather[0].description,
     conditionPic: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
   };
