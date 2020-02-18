@@ -7,24 +7,26 @@
     <title>Document</title>
   </head>
   <body>
-    <input type="text" id="input" /><button id="submit">Get Weather</button>
+    <div id="searchbar"></div>
+      <input type="text" id="input" /><span id="submit"><i class="fas fa-search"></i></span>
+    </div>
     <div id="container"></div>
     <script id="city-template" type="text/x-handlebars-template">
       {{#each data}}
       <div class="city" data-name="{{name}}">
-      <h3 class="name">{{name}}</h3>
-      <h2 class="temp">{{temperature}}</h2>
-      <h3 class="condition">{{condition}}</h3>
-      <img src="{{conditionPic}}" alt="">
       {{#if saved}}
           <span class="delete">
-              <i class="fas fa-minus-circle"></i>
+              <i class="fas fa-minus-circle" style="color:red"></i>
           </span>
           {{else}}
           <span class="save">
-              <i class="fas fa-plus-circle"></i>
+              <i class="fas fa-plus-circle" style="color:green"></i>
           </span>
           {{/if}}
+        <h3 class="name">{{name}}</h3>
+      <h2 class="temp">{{temperature}}</h2>
+      <p class="condition">{{condition}}</p>
+      <img src="{{conditionPic}}" alt="">
       </div>
       {{/each}}
     </script>

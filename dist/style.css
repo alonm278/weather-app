@@ -1,0 +1,53 @@
+body {
+  background-image: url(https://c.pxhere.com/photos/47/68/lake_balaton_sunset_tihany_peninsula_clouds_colors_in_the_evening_light-1349296.jpg!d);
+  background-size: unset;
+}
+#searchbar {
+  margin-top: 20px;
+  display: grid;
+}
+#input {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  width: calc(100vw - 20%);
+  height: 3.5em;
+  border-radius: 20px;
+  border: white;
+}
+#submit {
+  height: 2em;
+  margin-left: 10px;
+  font-size: 30px;
+  color: whitesmoke;
+}
+#container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.city {
+  margin: 0, 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  align-items: center;
+  box-shadow: rgba(10, 10, 10, 0.3) 15px 15px 40px;
+}
+.city:hover{
+    background-color: rgba(150, 150, 150, 0.2);
+}
+.name {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  justify-self: left;
+  color: white;
+}
+.condition {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: white;
+}
+.temp {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
