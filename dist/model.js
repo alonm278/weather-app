@@ -3,30 +3,36 @@ class weatherManager {
     this.cityData = [];
   }
   async getDataFromDB(cityData) {
-    let cities = await $.get(`/cities`);
+    const cities = await $.get(`/cities`);
     cities.forEach(c => {
-      this.cityData.push(c);
+      c.saved = true;
+      this.cityData.unshift(c);
     });
   }
 
   async getCityData(cityData) {
-    let input = $(`#input`)
+    const input = $(`#input`)
       .val()
       .toLowerCase();
-    this.cityData.push(await $.get(`/city/${input}`));
+    const city = await $.get(`/city/${input}`);
+    this.cityData.unshift(city);
+    this.cityData[0].saved = false;
   }
 
-  async saveCity () {
-    await $.post(`/city`);
-  };
+  async saveCity(city, index) {
+    this.cityData[index].saved = true;
+    let savePromise = await $.post(`./city`, city);
+    console.log(`${savePromise} saved to DB`);
+  }
 
-  removeCity = cityName => {
-    $.ajax({
-      url: `/city/${cityName}`,
+  async removeCity(city, index) {
+    await $.ajax({
+      url: `/city/${city}`,
       type: "DELETE",
       success: function(result) {
-        console.log(`deleted ${cityName}`);
+        console.log(`deleted ${city}`);
       }
     });
-  };
+    this.cityData.splice(index, 1)
+  }
 }

@@ -11,15 +11,24 @@
     <div id="container"></div>
     <script id="city-template" type="text/x-handlebars-template">
       {{#each data}}
-      <div class="city">
+      <div class="city" data-name="{{name}}">
       <h3 class="name">{{name}}</h3>
       <h2 class="temp">{{temperature}}</h2>
       <h3 class="condition">{{condition}}</h3>
       <img src="{{conditionPic}}" alt="">
-      <button class="save">Save</button>
+      {{#if saved}}
+          <span class="delete">
+              <i class="fas fa-minus-circle"></i>
+          </span>
+          {{else}}
+          <span class="save">
+              <i class="fas fa-plus-circle"></i>
+          </span>
+          {{/if}}
       </div>
       {{/each}}
     </script>
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"></script>
     <script src="/handlebars/dist/handlebars.js"></script>
     <script src="/jquery/dist/jquery.js"></script>
     <script src="render.js"></script>
