@@ -1,8 +1,9 @@
 html {
-  background: url(https://c.pxhere.com/photos/47/68/lake_balaton_sunset_tihany_peninsula_clouds_colors_in_the_evening_light-1349296.jpg!d);
+  background: url(https://r1.ilikewallpaper.net/iphone-x-wallpapers/download/74619/nightlight-iphone-x-wallpaper-ilikewallpaper_com.jpg);
+  background-position: center center;
   background-repeat: no-repeat;
-  background-size: 100vw 100vh;
-
+  background-attachment: fixed;
+  background-size: cover;
 }
 #searchbar {
   display: grid;
@@ -25,26 +26,28 @@ html {
   outline: none;
 }
 #submit {
-  margin-top: 8px;
+  align-self: center;
   font-size: 25px;
   color: black;
 }
 #container {
   margin-top: 30px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto;
+  gap: 1%;
 }
 .city {
-  margin: 0, 20px;
+  margin: 10, 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 2fr, 1fr;
   justify-items: center;
   align-items: center;
-  box-shadow: rgba(150, 150, 150, 0.3) 15px 15px 50px;
+  background-color: rgba(155, 155, 155, 0.3);
+  border-radius: 15px;
 }
 .city:hover {
-  background-color: rgba(150, 150, 150, 0.3);
+  background-color: rgba(155, 155, 155, 0.5);
 }
 .name {
   font-family: Arial, Helvetica, sans-serif;
