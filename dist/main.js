@@ -1,5 +1,5 @@
 let renderer = new Renderer();
-let manager = new weatherManager();
+let manager = new TempManager();
 
 $(`#submit`).on(`click`, async function() {
     await manager.getCityData()
@@ -23,5 +23,12 @@ $(`#container`).on(`click`, `.delete`, async function(){
     const name = $(this).closest('.city').data().name
     const index = manager.cityData.findIndex(c => c.name == name)
     await manager.removeCity(name, index)
+    renderer.render(manager.cityData)
+})
+
+$(`#container`).on(`click`, `.refresh`, async function(){
+    const name = $(this).closest('.city').data().name
+    const index = manager.cityData.findIndex(c => c.name == name)
+    await manager.updateCity(manager.cityData[index], index)
     renderer.render(manager.cityData)
 })

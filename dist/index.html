@@ -7,26 +7,28 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="searchbar"></div>
-      <input type="text" id="input" /><span id="submit"><i class="fas fa-search"></i></span>
+    <div id="searchbar">
+      <input type="text" id="input" placeholder="Enter City Name"/><span id="submit"><i class="fas fa-search"></i></span>
+    </div>
     </div>
     <div id="container"></div>
     <script id="city-template" type="text/x-handlebars-template">
       {{#each data}}
       <div class="city" data-name="{{name}}">
-      {{#if saved}}
-          <span class="delete">
-              <i class="fas fa-minus-circle" style="color:red"></i>
-          </span>
-          {{else}}
-          <span class="save">
-              <i class="fas fa-plus-circle" style="color:green"></i>
-          </span>
-          {{/if}}
         <h3 class="name">{{name}}</h3>
-      <h2 class="temp">{{temperature}}°</h2>
-      <p class="condition">{{condition}}</p>
-      <img src="{{conditionPic}}" alt="">
+        <h2 class="temp">{{temperature}}°</h2>
+        <img src="{{conditionPic}}" alt="">
+        <span class="refresh"><i class="fas fa-redo"></i></span>
+        {{#if saved}}
+        <span class="delete">
+          <i class="fas fa-minus-circle" style="color:red"></i>
+        </span>
+        {{else}}
+        <span class="save">
+          <i class="fas fa-plus-circle" style="color:green"></i>
+        </span>
+        {{/if}}
+        <p class="condition">{{condition}}</p>
       </div>
       {{/each}}
     </script>

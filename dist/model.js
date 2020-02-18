@@ -1,4 +1,4 @@
-class weatherManager {
+class TempManager {
   constructor() {
     this.cityData = [];
   }
@@ -29,10 +29,31 @@ class weatherManager {
     await $.ajax({
       url: `/city/${city}`,
       type: "DELETE",
-      success: function(result) {
+      success: function() {
         console.log(`deleted ${city}`);
       }
     });
-    this.cityData.splice(index, 1)
+    this.cityData.splice(index, 1);
+  }
+
+  async updateCity(city, index) {
+    const updatedCity = await $.get(`/city/${city.name}`);
+    if (this.cityData[index].saved){
+      updatedCity.saved = true
+    } else {
+      updatedCity.saved = false
+    }
+    await $.ajax({
+      url: `/city`,
+      type: "PUT",
+      data: updatedCity,
+      success: () => {
+        console.log(`updated ${city.name}`);
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+    this.cityData.splice(index, 1, updatedCity);
   }
 }
