@@ -18,27 +18,36 @@ $(`#currentCityContainer`).on(`click`, `.save`, async function() {
     .data().name;
   await manager.saveCity(manager.currentCity);
   renderer.renderSaved(manager.savedCities);
+  renderer.renderCurrent(manager.currentCity);
 });
 
-$(`#savedContainer`).on(`click`, `.delete`, async function() {
+$(`#currentCityContainer`).on(`click`, `.delete`, async function() {
   const name = $(this)
-    .closest(".savedCity")
+    .closest(".currentCity")
     .data().name;
   const index = manager.savedCities.findIndex(c => c.name == name);
   await manager.removeCity(name, index);
   renderer.renderSaved(manager.savedCities);
+  renderer.renderCurrent(manager.currentCity);
 });
 
-$(`#savedContainer`).on(`click`, `.refresh`, async function() {
+$(`#currentCityContainer`).on(`click`, `.refresh`, async function() {
   const name = $(this)
-    .closest(".savedCity")
+    .closest(".currentCity")
     .data().name;
   const index = manager.savedCities.findIndex(c => c.name == name);
-  await manager.updateCity(manager.savedCities[index], index);
+  await manager.updateCity(manager.currentCity, index);
   renderer.renderSaved(manager.savedCities);
+  renderer.renderCurrent(manager.currentCity);
 });
 
 $(`#savedContainer`).on(`click`, `.savedCity`, function() {
   $(`.savedCity`).css("background-color", "rgba(180, 180, 180, 0.2");
   $(this).css("background-color", "rgba(180, 180, 180, 0.5)");
+  const name = $(this)
+    .closest(".savedCity")
+    .data().name;
+  const index = manager.savedCities.findIndex(c => c.name == name);
+  manager.currentCity = manager.savedCities[index];
+  renderer.renderCurrent(manager.currentCity);
 });

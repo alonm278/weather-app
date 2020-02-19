@@ -39,12 +39,15 @@ html {
 }
 .savedCity {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   align-items: center;
   background-color: rgba(180, 180, 180, 0.2);
   border-radius: 15px;
   color: white;
+}
+.savedCity img {
+  height: 50px;
 }
 .currentCity {
   margin-top: 30px;
@@ -56,7 +59,7 @@ html {
   background-color: rgba(180, 180, 180, 0.5);
   border-radius: 15px;
   color: white;
-  padding: 20px 0;
+  padding: 20px 10px;
 }
 .currentCity .name{
   font-size: 25px;

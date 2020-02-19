@@ -1,7 +1,7 @@
 class TempManager {
   constructor() {
     this.savedCities = [];
-    this.currentCity = {}
+    this.currentCity = {};
   }
   async getDataFromDB(savedCities) {
     const cities = await $.get(`/cities`);
@@ -12,24 +12,27 @@ class TempManager {
   }
 
   async getCityData(cityData) {
-    const input = $(`#input`)
-      .val()
-      .toLowerCase();
-    const city = await $.get(`/city/${input}`);    
-    this.currentCity = city;
-    this.currentCity.saved = false;
-    console.log(this.currentCity);
-    
+    const input = $(`#input`).val();
+    let city = await $.get(`/city/${input}`);
+    let name = city.name;
+    if (this.savedCities.find(c => c.name == name)) {
+      const index = this.savedCities.findIndex(c => c.name == name);
+      this.currentCity = this.savedCities[index];
+    } else {
+      this.currentCity = city;
+      this.currentCity.saved = false;
+    }
   }
 
   async saveCity(city) {
-    let savePromise = await $.post(`./city`, city);
     city.saved = true;
-    this.savedCities.unshift(city)
+    let savePromise = await $.post(`./city`, city);
+    this.savedCities.unshift(city);
     console.log(`${savePromise} saved to DB`);
   }
 
   async removeCity(city, index) {
+    this.currentCity.saved = false;
     await $.ajax({
       url: `/city/${city}`,
       type: "DELETE",
@@ -42,10 +45,10 @@ class TempManager {
 
   async updateCity(city, index) {
     const updatedCity = await $.get(`/city/${city.name}`);
-    if (this.savedCities[index].saved){
-      updatedCity.saved = true
+    if (this.currentCity.saved) {
+      updatedCity.saved = true;
     } else {
-      updatedCity.saved = false
+      updatedCity.saved = false;
     }
     await $.ajax({
       url: `/city`,

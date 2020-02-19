@@ -17,7 +17,7 @@ router.get(`/city/:cityName`, async function(req, res) {
     name: data.name,
     temperature: Math.round(data.main.temp),
     condition: data.weather[0].description,
-    conditionPic: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`
+    conditionPic: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
   };
   res.send(data);
 });
@@ -49,7 +49,6 @@ router.delete(`/city/:cityName`, function(req, res) {
 router.put(`/city`, function(req, res) {
   const city = req.body;
   City.findOneAndUpdate({ name: city.name }, city).exec(function(err, resp) {
-    console.log(city);
     res.end();
   });
 });

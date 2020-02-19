@@ -33,10 +33,7 @@
     </script>
     <script id="savedCity-template" type="text/x-handlebars-template">
       {{#each data}}
-      <div class="savedCity" data-name="{{name}}">
-        <span class="delete">
-          <i class="fas fa-minus-circle" style="color:red"></i>
-        </span>
+      <div class="savedCity" data-name="{{name}}"> 
         <h3 class="name">{{name}}</h3>
         <h2 class="temp">{{temperature}}°</h2>
         <img src="{{conditionPic}}" alt="">
