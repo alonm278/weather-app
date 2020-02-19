@@ -14,16 +14,17 @@ html {
   margin-top: 10%;
   height: 40px;
   border-radius: 20px;
+  opacity: 50%;
 }
 #input {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   width: calc(100vw - 40%);
   justify-self: center;
   align-self: center;
-  border: white;
   text-align: center;
   outline: none;
+  border: white 1px
 }
 #submit {
   align-self: center;
@@ -37,33 +38,36 @@ html {
   gap: 1%;
 }
 .city {
-  margin: 10, 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 2fr, 1fr;
   justify-items: center;
   align-items: center;
-  background-color: rgba(155, 155, 155, 0.3);
+  background-color: rgba(180, 180, 180, 0.2);
   border-radius: 15px;
+  /* padding-bottom: 5px; */
 }
 .city:hover {
-  background-color: rgba(155, 155, 155, 0.5);
+  background-color: rgba(180, 180, 180, 0.5);
 }
 .name {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   text-align: center;
   color: white;
+  margin: 0;
 }
 .condition {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   color: white;
+  margin: 5px 0;
 }
 .temp {
   font-family: Arial, Helvetica, sans-serif;
   color: white;
-  font-size: 45px;
+  font-size: 35px;
+  margin: 0;
 }
 .refresh {
     color: white

@@ -17,7 +17,7 @@ router.get(`/city/:cityName`, async function(req, res) {
     name: data.name,
     temperature: Math.round(data.main.temp),
     condition: data.weather[0].description,
-    conditionPic: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+    conditionPic: `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`
   };
   res.send(data);
 });
