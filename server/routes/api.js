@@ -48,7 +48,6 @@ router.delete(`/city/:cityName`, function(req, res) {
 
 router.put(`/city`, function(req, res) {
   const city = req.body;
-  // city.temperature = 25
   City.findOneAndUpdate({ name: city.name }, city).exec(function(err, resp) {
     console.log(city);
     res.end();

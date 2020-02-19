@@ -1,12 +1,13 @@
 class TempManager {
   constructor() {
-    this.cityData = [];
+    this.savedCities = [];
+    this.currentCity = {}
   }
-  async getDataFromDB(cityData) {
+  async getDataFromDB(savedCities) {
     const cities = await $.get(`/cities`);
     cities.forEach(c => {
       c.saved = true;
-      this.cityData.unshift(c);
+      this.savedCities.unshift(c);
     });
   }
 
@@ -14,14 +15,17 @@ class TempManager {
     const input = $(`#input`)
       .val()
       .toLowerCase();
-    const city = await $.get(`/city/${input}`);
-    this.cityData.unshift(city);
-    this.cityData[0].saved = false;
+    const city = await $.get(`/city/${input}`);    
+    this.currentCity = city;
+    this.currentCity.saved = false;
+    console.log(this.currentCity);
+    
   }
 
-  async saveCity(city, index) {
-    this.cityData[index].saved = true;
+  async saveCity(city) {
     let savePromise = await $.post(`./city`, city);
+    city.saved = true;
+    this.savedCities.unshift(city)
     console.log(`${savePromise} saved to DB`);
   }
 
@@ -33,12 +37,12 @@ class TempManager {
         console.log(`deleted ${city}`);
       }
     });
-    this.cityData.splice(index, 1);
+    this.savedCities.splice(index, 1);
   }
 
   async updateCity(city, index) {
     const updatedCity = await $.get(`/city/${city.name}`);
-    if (this.cityData[index].saved){
+    if (this.savedCities[index].saved){
       updatedCity.saved = true
     } else {
       updatedCity.saved = false
@@ -54,6 +58,6 @@ class TempManager {
         console.log(err);
       }
     });
-    this.cityData.splice(index, 1, updatedCity);
+    this.savedCities.splice(index, 1, updatedCity);
   }
 }

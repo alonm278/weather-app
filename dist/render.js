@@ -1,9 +1,17 @@
 class Renderer {
-    render(data) {
-      const source = $("#city-template").html();
+    renderSaved(data) {
+      const source = $("#savedCity-template").html();
       const template = Handlebars.compile(source);
       const newHTML = template({ data });
-      $(`#container`)
+      $(`#savedContainer`)
+        .empty()
+        .append(newHTML);
+    }
+    renderCurrent(data) {
+      const source = $("#currentCity-template").html();
+      const template = Handlebars.compile(source);
+      const newHTML = template({ data });
+      $(`#currentCityContainer`)
         .empty()
         .append(newHTML);
     }

@@ -11,15 +11,15 @@
       <input type="text" id="input" placeholder="Enter City Name"/><span id="submit"><i class="fas fa-search"></i></span>
     </div>
     </div>
-    <div id="container"></div>
-    <script id="city-template" type="text/x-handlebars-template">
-      {{#each data}}
-      <div class="city" data-name="{{name}}">
-        <h3 class="name">{{name}}</h3>
-        <h2 class="temp">{{temperature}}°</h2>
-        <img src="{{conditionPic}}" alt="">
+    <div id="currentCityContainer"></div>
+    <div id="savedContainer"></div>
+    <script id="currentCity-template" type="text/x-handlebars-template">
+      <div class="currentCity" data-name="{{data.name}}">
+        <h3 class="name">{{data.name}}</h3>
+        <h2 class="temp">{{data.temperature}}°</h2>
+        <img src="{{data.conditionPic}}" alt="">
         <span class="refresh"><i class="fas fa-redo"></i></span>
-        {{#if saved}}
+        {{#if data.saved}}
         <span class="delete">
           <i class="fas fa-minus-circle" style="color:red"></i>
         </span>
@@ -28,7 +28,18 @@
           <i class="fas fa-plus-circle" style="color:green"></i>
         </span>
         {{/if}}
-        <p class="condition">{{condition}}</p>
+        <p class="condition">{{data.condition}}</p>
+      </div>
+    </script>
+    <script id="savedCity-template" type="text/x-handlebars-template">
+      {{#each data}}
+      <div class="savedCity" data-name="{{name}}">
+        <span class="delete">
+          <i class="fas fa-minus-circle" style="color:red"></i>
+        </span>
+        <h3 class="name">{{name}}</h3>
+        <h2 class="temp">{{temperature}}°</h2>
+        <img src="{{conditionPic}}" alt="">
       </div>
       {{/each}}
     </script>
