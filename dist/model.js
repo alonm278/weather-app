@@ -62,5 +62,6 @@ class TempManager {
       }
     });
     this.savedCities.splice(index, 1, updatedCity);
+    this.currentCity = updatedCity;
   }
 }

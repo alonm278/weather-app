@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require(`axios`);
 const City = require("../models/City");
+const apiKey = "ad2a455b26a132204d39870ab339bf22";
 
 const getWeather = async function(url) {
   let result = await axios.get(url);
@@ -10,7 +11,6 @@ const getWeather = async function(url) {
 
 router.get(`/city/:cityName`, async function(req, res) {
   let { cityName } = req.params;
-  const apiKey = "ad2a455b26a132204d39870ab339bf22";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
   let data = await getWeather(url);
   data = {
@@ -34,7 +34,6 @@ router.post(`/city`, async function(req, res) {
     condition: req.body.condition,
     conditionPic: req.body.conditionPic
   });
-
   await city.save();
   res.end();
 });
